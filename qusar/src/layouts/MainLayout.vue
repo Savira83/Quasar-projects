@@ -31,7 +31,7 @@
         :width="250"
         :breakpoint="600"
       >
-        <q-scroll-area style="height: calc(100% - 142px); margin-top: 142px; border-right: 1px solid #ddd">
+        <q-scroll-area style="height: calc(100% - 142px); margin-top: 162x; border-right: 1px solid #ddd">
           <q-list padding>
             <q-item  to= "/"
             exact 
