@@ -11,9 +11,9 @@
           @click="toggleLeftDrawer"
         />
 
-       <div class="q-px-lg q-pt-xl q-mb-md">s
+       <div class="q-px-lg q-pt-xl q-mb-md">
           <div class="text-h3"> My Tasks</div>
-          <div class="text-subtitle1">Sandey 6 November</div>
+          <div class="text-subtitle1">{{todayDate}}</div>
         </div>
         <!-- <q-img 
         class="header-image absolute-top"
@@ -71,7 +71,7 @@
               <img src="https://scontent-lga3-2.xx.fbcdn.net/v/t39.30808-6/272781080_2035998789908139_4453602705481855954_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=174925&_nc_ohc=1HR13iNuS8oAX8Mfta3&tn=6EyPSL43KRLY5fzc&_nc_ht=scontent-lga3-2.xx&oh=00_AfCYhuPyQgNcIJoZwCY4JE_XF7C1dWH2dFXwroqFFq1wng&oe=636D81AF">
             </q-avatar>
             <div class="text-weight-bold">Iryna Savchenko</div>
-            <div>@iryna_savchenk</div>
+            <div>@iryna_savchenko</div>
           </div>
         </q-img>
       </q-drawer>
@@ -140,12 +140,13 @@ export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    EssentialLink
+    EssentialLink,
+
   },
-  commputed:{
+  computed:{
     todayDate(){
-      const timeStamp = Date.now()
-      return date.formatDate(timeStamp, 'DDDD MMMM YYYY')
+     let timeStamp = Date.now()
+      return  date.formatDate(timeStamp, 'DD MMMM YYYY HH : mm')
 
     }
   },
