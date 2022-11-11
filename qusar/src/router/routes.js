@@ -1,14 +1,16 @@
-
-const routes = [
-  {
+const routes = [{
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/myTasks.vue')},
-       { path: '/help', component: () => import('pages/myHelp.vue')}
-       
-    ]
+      { path: '', component: () => import('pages/myDepartment.vue') },
+      { path: '/help', component: () => import('pages/myHelp.vue') },
+      { path: '/buttons', name: 'Buttons', component: () => import('pages/myButtons') },
+       { path: '/calendar', name: 'Calendar', component: () => import('pages/myCalendar') }
+
+    ],
   },
+     ,
+
 
   // Always leave this as last one,
   // but you can also remove it

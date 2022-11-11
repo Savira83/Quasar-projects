@@ -10,7 +10,6 @@
         bg-color="white"
         placeholder="Add task"  
         dense>
-        
         <template v-slot:before>
           <q-icon name="event" />
         </template>
@@ -31,9 +30,6 @@
     </div>
     <q-list class="bg-white" separator bordered>
       <q-item v-for="(task, id) in tasks" :key="id" @click="task.done = !task.done" :class="{'done bg-blue-1': task.done}" clickable v-ripple>
-        <q-item-section avatar>
-          <q-checkbox v-model="task.done" class="no-pointer-events" color="primary" />
-        </q-item-section>
         <q-item-section avatar>
           <q-checkbox v-model="task.done" class="no-pointer-events" color="primary" />
         </q-item-section>
@@ -118,7 +114,7 @@ export default defineComponent({
     color: #bbb;
   }
 }
- .no-tasks{
+.no-tasks {
     opacity: 0.5;
   }
 
