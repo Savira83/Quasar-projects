@@ -5,21 +5,18 @@
         {{q_date}}
         <template v-slot:before>
           <div class="q-pa-md">
-            <q-date v-model="q_date" :events="eventsFn" event-color="orange" />
+            <q-date v-model="q_date"  :events="eventsFn"  event-color="orange" />
           </div>
+          
         </template>
         <template v-slot:after>
           <q-tab-panels v-model="q_date" animated transition-prev="jump-up" transition-next="jump-up">
             <q-tab-panel :name="day.date" v-for="day in calendar" :key="day.date">
               <div class="text-h4 q-mb-md">{{day.date}}
-                <!-- q-btn
-        :to="'/addNewTask'"
-        label="Add task"
-        no-caps
-      /> -->
+               
                 <add-task :id="day.id"></add-task>
               </div>
-              <p v-for="(text, id) in day.tasks" :key="id">{{text.task}}</p>
+              <p v-for="(text, id) in tasks" :key="id">{{text.task}}</p>
             </q-tab-panel>
           </q-tab-panels>
         </template>
@@ -45,15 +42,31 @@ export default defineComponent({
   },
   data() {
     return {
-      date: [],
-      q_date: null
+      date: "",
+      q_date: null,
     }
   },
+watch:{
 
+  q_date(date){
+    // debugger
+    if(date.lenght<1){
+      return
+    }
+    let id = this.$store.state.calendar.find((i) => i.date === date).id // i found this, but it is the same thet this.calendar
+    
+    this.getTaskById({id:id})
+  }
+
+},
   computed: {
     ...mapState([
-      'calendar'
+      'calendar', 'tasks'
     ]),
+    // if(q_date.id){
+    //   
+    // }
+   
 
     todayDate() {
       const timeStamp = Date.now()
@@ -62,20 +75,26 @@ export default defineComponent({
   },
 
   methods: {
-    ...mapActions(['getCalendarDate']),
+    ...mapActions(['getCalendarDate', 'getTaskById']),
 
     eventsFn(date) {
-
       let events = []
       for (const data of this.calendar) {
         events.push(data.date)
       }
       console.log(events)
       return events.includes(date)
-    }
+    },
+     fetchData(){
+
+      alert('function')
+      return false
+    },
+   
   },
   mounted() {
     this.getCalendarDate()
+    
   },
 
 

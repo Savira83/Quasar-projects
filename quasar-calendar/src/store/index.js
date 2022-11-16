@@ -14,58 +14,77 @@ import axios from 'axios'
  */
 
 export default store(function( /* { ssrContext } */ ) {
-  const Store = createStore({
-    state: {
-      calendar: [
-        {date:"",
-        tasks:[
-          {task:""}]}
-        ]
-    },
-    actions: {
-      getCalendarDate({ commit }) {
-        axios
-          .get('http://localhost:3000/calendar')
-          .then(response => {
-            commit('SET_CALENDAR_DATE', response.data)
-          })
-      },
-      addTask({ commit }, data) {
-            axios
-                .patch(`http://localhost:3000/calendar/${data.id} `, data)
+      const Store = createStore({
+          state: {
+            calendar: [{
+              date: "",
+            }],
+            tasks: []
+          },
+          actions: {
+            getCalendarDate({ commit }) {
+              axios
+                .get('http://localhost:3000/calendar')
                 .then(response => {
-                    commit('EDD_TASK', response.data)
+                  commit('SET_CALENDAR_DATE', response.data)
                 })
-        },
-    },
-    mutations: {
-      SET_CALENDAR_DATE(state, calendar) {
-        state.calendar = calendar;
-      },
+            },
+            addTask({ commit }, data) {
+              axios
+                .put(`http://localhost:3000/calendar/${data.id}`, data)
+                .then(response => {
+                  commit('EDD_TASK', response.data)
+                })
+              // commit('EDD_TASK', data)
+            },
+            getTaskById({ commit }, data) {
+              axios
+                .get(`http://localhost:3000/calendar/${data.id}/tasks`)
+                .then(response => {
+                    commit('SET_TASKS', response.data)
+                  })
 
-      EDD_TASK(satate, {data, task}){
-        // let calendarTasks = this.getters.getTasksById(data.id)
-        // calendarTasks.tasks = state.calendar.tasks.push(task)
-        const object = this.state.calendar.findIndex((i) => i.id === data.id);
-        state.calendar[index].tasks.push(task)
-      }
-    },
-    getters:{
-     
-         getTasksById: (state) => (id) => {
-            return state.calendar.find((i) => i.id === id)
-        },
-    },
+                }
+            },
+
+            mutations: {
+              SET_CALENDAR_DATE(state, calendar) {
+                state.calendar = calendar;
+              },
+
+              EDD_TASK(state, data) {
+                // let calendarTasks = this.getters.getTasksById(data.id)
+                // calendarTasks.tasks = state.calendar.tasks.push(task)
+                const index = this.state.calendar.findIndex((i) => i.id === data.id);
+                state.calendar[index].tasks.push({ task: data.task })
+                console.log(state)
+              },
+              SET_TASKS(state, tasks) {
+                state.tasks = tasks
+
+              }
+            },
+
+            getters: {
+
+              getTasksById: (state) => (id) => {
+                return state.calendar.find((i) => i.id === id)
+              },
+              getCalendarIdByDate: (state) => (date) => {
+                return state.calendar.find((i) => i.date === date).id
+              },
+            },
 
 
-    modules: {
-      // example
-    },
 
-    // enable strict mode (adds overhead!)
-    // for dev mode and --debug builds only
-    strict: process.env.DEBUGGING
-  })
+            modules: {
+              // example
+            },
 
-  return Store
-})
+            // enable strict mode (adds overhead!)
+            // for dev mode and --debug builds only
+            strict: process.env.DEBUGGING
+          })
+
+        return Store
+      })

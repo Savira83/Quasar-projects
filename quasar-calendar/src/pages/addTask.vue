@@ -17,11 +17,8 @@
 	export default defineComponent({
   data() {
   return {
-      
-
-        task:" "}
-        
-  
+      task:" ",
+        }
   },  
   props:['id'], 
 

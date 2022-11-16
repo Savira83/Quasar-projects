@@ -1,0 +1,21 @@
+{
+  "calendar": [
+  {
+    "date": "2022/11/06",
+    "id": 1
+  }],
+  "tasks": [
+    {
+      "task": "go tu stor",
+      "id": 1,
+      "calendarId": 1
+
+    },
+    {
+      "task": "go to car wash",
+      "id": 2,
+      "calendarId": 1
+    }
+
+  ]
+}
