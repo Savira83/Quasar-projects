@@ -16,8 +16,10 @@ import axios from 'axios'
 export default store(function( /* { ssrContext } */ ) {
       const Store = createStore({
           state: {
+
             calendar: [{
-              date: "",
+            date:"",
+            id:"",
             }],
             tasks: []
           },
@@ -44,6 +46,13 @@ export default store(function( /* { ssrContext } */ ) {
                     commit('SET_TASKS', response.data)
                   })
 
+                },
+                addTaskDate({ commit }, data){axios
+                .post('http://localhost:3000/calendar', data)
+                .then(response => {
+                  commit('ADD_TASK_DATE', response.data)
+                })
+
                 }
             },
 
@@ -62,6 +71,9 @@ export default store(function( /* { ssrContext } */ ) {
               SET_TASKS(state, tasks) {
                 state.tasks = tasks
 
+              },
+              ADD_TASK_DATE(state, date){
+                state.calendar.push(date)
               }
             },
 
@@ -71,7 +83,8 @@ export default store(function( /* { ssrContext } */ ) {
                 return state.calendar.find((i) => i.id === id)
               },
               getCalendarIdByDate: (state) => (date) => {
-                return state.calendar.find((i) => i.date === date).id
+                return state.calendar.find(function(i) {
+                  return i.date === date})
               },
             },
 

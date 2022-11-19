@@ -1,21 +1,40 @@
 {
   "calendar": [
-  {
-    "date": "2022/11/06",
-    "id": 1
-  }],
+    {
+      "date": "2022/11/06",
+      "id": 1
+    },
+    {
+      "date": "2022/11/06",
+      "id": 2
+    },
+    {
+      "date": "2022/11/06",
+      "id": 3
+    },
+    {
+      "date": "2022/11/07",
+      "id": 4
+    },
+    {
+      "date": "2022/11/06",
+      "id": 5
+    },
+    {
+      "date": null,
+      "id": 6
+    }
+  ],
   "tasks": [
     {
       "task": "go tu stor",
       "id": 1,
       "calendarId": 1
-
     },
     {
       "task": "go to car wash",
       "id": 2,
       "calendarId": 1
     }
-
   ]
 }
