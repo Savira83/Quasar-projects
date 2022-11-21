@@ -5,7 +5,7 @@
         {{q_date}}
         <template v-slot:before>
           <div class="q-pa-md">
-            <q-date v-model="q_date" @click='addDateForTask' :events="eventsFn" event-color="orange" />
+            <q-date v-model="q_date" @click="handleDate(date)"  :events="eventsFn" event-color="orange" />
           </div>
         </template>
         <template v-slot:after>
@@ -31,7 +31,7 @@ import { date } from 'quasar'
 import { defineComponent } from 'vue'
 import { useQuasar } from 'quasar'
 import { ref } from 'vue'
-import { mapState, mapActions, mapGetters } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import axios from 'axios'
 
 export default defineComponent({
@@ -44,17 +44,37 @@ export default defineComponent({
       q_date: null,
     }
   },
-  watch: {
-    q_date(date) {
-       return date
-    }
+  // watch:{
 
-  },
+  //   q_date(date){
+  //     if(date.lenght<1){
+  //       return
+  //     }
+  //     // this.handleDate({date:this.date})
+  //     // let existDate = this.calendar.find((i) => i.date === date).date
+
+
+  //     // if(existDate==date){
+  //     //   alert('You already add this day ')
+  //     //   return
+  //     // }
+  //     // let id = this.calendar.find((i) => i.date === date).id
+  //     // console.log(id)
+  //     // console.log(this.q_date)
+  //     console.log(date)
+      // this.getTaskById({id:id})
+  //     return date
+
+  //   }
+
+  // },
   computed: {
     ...mapState([
       'calendar', 'tasks'
     ]),
-    ...mapGetters(['getCalendarIdByDate']),
+
+
+
     todayDate() {
       const timeStamp = Date.now()
       return date.formatDate(timeStamp, 'DD MMMM YYYY')
@@ -62,26 +82,48 @@ export default defineComponent({
   },
 
   methods: {
-    ...mapActions(['getCalendarDate', 'getTaskById','addTaskDate']),
+    ...mapActions(['getCalendarDate', 'getTaskById', 'addDate']),
 
     eventsFn(date) {
       let events = []
       for (const data of this.calendar) {
         events.push(data.date)
       }
-      console.log(events)
+      // console.log(events)
       return events.includes(date)
     },
-    addDateForTask(){
-      // let existDate= this.getCalendarIdByDate(this.q_date).date
-      // console.log(existDate)
-      this.addTaskDate({date:this.q_date})
-    },
 
+    handleDate(date) {
+      if(this.q_date==null){
+        return
+      }
+      console.log(this.calendar)
+
+      console.log(this.q_date)
+     let id = this.calendar.find((i) => i.date === this.q_date).id
+      this.getTaskById({id:id})
+
+
+
+
+
+      // this.addDate({date:date})
+
+      // let existDate = this.calendar.find((i) => i.date === date).date
+      // console.log(existDate)
+
+      //  if(existDate==date){
+      // alert('You already add this day ')
+      // return
+      //   }
+
+      // },
+      console.log(this.q_date)
+
+    },
   },
   mounted() {
     this.getCalendarDate()
-
 
   },
 
