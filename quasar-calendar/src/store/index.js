@@ -16,28 +16,38 @@ import axios from 'axios'
 export default store(function( /* { ssrContext } */ ) {
       const Store = createStore({
           state: {
-
+            
             calendar: [{
-            date:"",
-            id:"",
+              date: "",
             }],
-            tasks: []
+            tasks: [{
+              calendarId:null
+            }]
           },
           actions: {
             getCalendarDate({ commit }) {
               axios
                 .get('http://localhost:3000/calendar')
                 .then(response => {
-                  commit('SET_CALENDAR_DATE', response.data)
+                  commit('SET_CALENDAR_DATES', response.data)
                 })
             },
+
+            addDate({commit}, data){
+              axios
+              .post('http://localhost:3000/calendar/', data)
+              .then(response=>{
+                commit('ADD_CALENDAR_DATE', response.data)
+              })
+            },
+
             addTask({ commit }, data) {
               axios
-                .put(`http://localhost:3000/calendar/${data.id}`, data)
+                .put(`http://localhost:3000/calendar/${data.id}/tasks`, data)
                 .then(response => {
-                  commit('EDD_TASK', response.data)
+                  commit('ADD_TASK', response.data)
                 })
-              // commit('EDD_TASK', data)
+
             },
             getTaskById({ commit }, data) {
               axios
@@ -46,45 +56,38 @@ export default store(function( /* { ssrContext } */ ) {
                     commit('SET_TASKS', response.data)
                   })
 
-                },
-                addTaskDate({ commit }, data){axios
-                .post('http://localhost:3000/calendar', data)
-                .then(response => {
-                  commit('ADD_TASK_DATE', response.data)
-                })
-
                 }
             },
 
             mutations: {
-              SET_CALENDAR_DATE(state, calendar) {
+              SET_CALENDAR_DATES(state, calendar) {
                 state.calendar = calendar;
               },
-
-              EDD_TASK(state, data) {
-                // let calendarTasks = this.getters.getTasksById(data.id)
-                // calendarTasks.tasks = state.calendar.tasks.push(task)
+              ADD_CALENDAR_DATE(state, date) {
+                state.calendar.push(date);
+              },
+             ADD_TASK(state, data) {
                 const index = this.state.calendar.findIndex((i) => i.id === data.id);
-                state.calendar[index].tasks.push({ task: data.task })
-                console.log(state)
+                let id = this.getDateId(data)
+                state.tasks.spush(data)
+                // console.log(state)
               },
               SET_TASKS(state, tasks) {
                 state.tasks = tasks
 
               },
-              ADD_TASK_DATE(state, date){
-                state.calendar.push(date)
-              }
-            },
+          },
 
             getters: {
 
               getTasksById: (state) => (id) => {
-                return state.calendar.find((i) => i.id === id)
+                return state.calendar.find((i) => i.id === id).id
               },
-              getCalendarIdByDate: (state) => (date) => {
-                return state.calendar.find(function(i) {
-                  return i.date === date})
+              getDateIndex: (state) => (date) => {
+                return state.calendar.findIndex((i) => i.date === date)
+              },
+               getTaskIdByDate: (state) => (date) => {
+                return state.tasks.find((i) => i.date === date)
               },
             },
 
