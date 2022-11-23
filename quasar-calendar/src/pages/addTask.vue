@@ -5,7 +5,7 @@
         <q-icon name="task" />
       </template>
       <template v-slot:append>
-        <q-btn @click="addTaskToDate(id)" round dense flat icon="add" />
+        <q-btn @click="addTaskToDate()" round dense flat icon="add" />
       </template>
     </q-input></div>
      
@@ -13,27 +13,36 @@
 
 <script>
   import { defineComponent } from 'vue'
-  import { mapActions } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
 	export default defineComponent({
   data() {
   return {
       task:" ",
+      calendarId: null
         }
   },  
   props:['id'], 
+  computed:{
+    ...mapGetters(['getTaskIdByDate']),
+  },
+
 
   methods:{
-    ...mapActions(['addTask']),
+    ...mapActions(['getTaskById', 'addTask']),
 
   	addTaskToDate(id) {
-     
-     
-     this.addTask({task:this.task, id:id})
+     let dateId = this.calendar.find((i) => i.date === this.q_date).id
+      this.addTask({ task: this.task, calendarId: dateId})
+      this.task = ""
+
      this.task=""
-     console.log('tasksId')
+     console.log(tasksId)
    }
   
-}
+},
+ mounted() {
+    this.getTaskIdByDate()
+  },
 
 
 })	

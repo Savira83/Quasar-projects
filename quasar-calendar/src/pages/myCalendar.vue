@@ -11,7 +11,7 @@
         <template v-slot:after>
           <q-tab-panels v-model="q_date" animated transition-prev="jump-up" transition-next="jump-up">
             <q-tab-panel :name="day.date" v-for="day in calendar" :key="day.date">
-              <q-input color="purple-12" v-model="task" label="Task">
+              <q-input color="purple-12" v-model="taskText" label="Task">
                   <template v-slot:prepend>
                     <q-icon name="task" />
                   </template>
@@ -57,7 +57,7 @@ export default defineComponent({
       date: "",
       q_date: null,
       calendarId: null,
-      task: ""
+      taskText: ""
     }
   },
 
@@ -80,7 +80,6 @@ export default defineComponent({
     },
 
   },
-
   methods: {
     ...mapActions(['getCalendarDate', 'getTaskById', 'addDate', 'addTask']),
     ...mapGetters(['getTaskIdByDate']),
@@ -94,8 +93,9 @@ export default defineComponent({
     },
     addTaskToDate(id) {
       let dateId = this.calendar.find((i) => i.date === this.q_date).id
-      this.addTask({id:id},{ task: this.task, calendarId: dateId})
-      this.task = ""
+      let task= {task:this.taskText}
+      this.addTask({ task: task, calendarId: dateId})
+      this.taskText = ""
 
     }
   },
