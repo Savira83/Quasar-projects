@@ -29,15 +29,31 @@
         :width="250"
         :breakpoint="600"
       >
+
         <q-scroll-area style="height: calc(100% - 142px); margin-top: 142px; border-right: 1px solid #ddd">
           <q-list padding>
-            <q-item  to= "/"
+            <q-item  to= "/inputForm"
+            exact 
+            clickable 
+            v-ripple>
+
+         <q-item-section>
+           <q-icon name="input"></q-icon>
+         </q-item-section>
+
+         <q-item-section>
+            Input Form
+         </q-item-section>
+       </q-item>
+
+            <q-item  to= "/addNewTask"
             exact 
             clickable 
             v-ripple>
               <q-item-section avatar>
                 <q-icon name="list" />
               </q-item-section>
+
 
               <q-item-section>
                 Tasks

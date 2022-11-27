@@ -1,6 +1,6 @@
 <template>
-	
-	<div><q-input color="purple-12" v-model="task" label="Task">
+  
+  <div><q-input color="purple-12" v-model="taskText" label="Task">
       <template v-slot:prepend>
         <q-icon name="task" />
       </template>
@@ -8,33 +8,32 @@
         <q-btn @click="addTaskToDate(id)" round dense flat icon="add" />
       </template>
     </q-input></div>
-     
 </template>
 
 <script>
   import { defineComponent } from 'vue'
-  import { mapActions } from 'vuex'
-	export default defineComponent({
+  import { mapActions, mapGetters } from 'vuex'
+  export default defineComponent({
   data() {
   return {
-      task:" ",
+     taskText: "",
+      calendarId: null,
+      sratus:false
         }
   },  
   props:['id'], 
-
+  computed:{
+    ...mapGetters(['getTaskIdByDate', 'getTasksById']),
+  },
   methods:{
-    ...mapActions(['addTask']),
+    ...mapActions(['getTaskById', 'addTask']),
 
-  	addTaskToDate(id) {
-     
-     
-     this.addTask({task:this.task, id:id})
-     this.task=""
-     console.log('tasksId')
-   }
-  
-}
-
-
-})	
+     addTaskToDate(id) {
+      let dateId=this.getTasksById(id)
+      let task= {task:this.taskText, status:false}
+      this.addTask({ task: task, calendarId: dateId})
+      this.taskText = ""
+    } 
+  },
+})  
 </script>

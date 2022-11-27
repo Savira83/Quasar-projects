@@ -10,6 +10,7 @@ const routes = [{
     ],
   },
   {path: '/addNewTask', name:'newTask', component:()=>import('pages/addTask.vue')},
+  {path: '/inputForm', name: 'inputForm', component:()=> import('components/inputForm.vue')}
      ,
 
 

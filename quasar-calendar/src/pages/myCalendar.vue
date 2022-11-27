@@ -11,16 +11,8 @@
         <template v-slot:after>
           <q-tab-panels v-model="q_date" animated transition-prev="jump-up" transition-next="jump-up">
             <q-tab-panel :name="day.date" v-for="day in calendar" :key="day.date">
-              <q-input color="purple-12" v-model="task" label="Task">
-                  <template v-slot:prepend>
-                    <q-icon name="task" />
-                  </template>
-                  <template v-slot:append>
-                    <q-btn @click="addTaskToDate(id)" round dense flat icon="add" />
-                  </template>
-                </q-input>
+                <add-task :id="day.id"></add-task>
               <div class="text-h4 q-mb-md">{{day.date}}
-                <!-- <add-task :id="day.id"></add-task> -->
               </div>
               <p v-for="(text, id) in tasks" :key="id">{{text.task}}</p>
             </q-tab-panel>
@@ -50,14 +42,12 @@ import axios from 'axios'
 
 export default defineComponent({
   components: {
-    // addTask
+    addTask
   },
   data() {
     return {
       date: "",
       q_date: null,
-      calendarId: null,
-      task: ""
     }
   },
 
@@ -75,15 +65,11 @@ export default defineComponent({
       for (const data of this.calendar) {
         events.push(data.date)
       }
-      // console.log(events)
       return events
     },
-
   },
-
   methods: {
-    ...mapActions(['getCalendarDate', 'getTaskById', 'addDate', 'addTask']),
-    ...mapGetters(['getTaskIdByDate']),
+    ...mapActions(['getCalendarDate', 'getTaskById', 'addDate']),
 
     handleDate(date) {
       if (this.q_date == null) {
@@ -92,12 +78,6 @@ export default defineComponent({
       let id = this.calendar.find((i) => i.date === this.q_date).id
       this.getTaskById({ id: id })
     },
-    addTaskToDate(id) {
-      let dateId = this.calendar.find((i) => i.date === this.q_date).id
-      this.addTask({id:id},{ task: this.task, calendarId: dateId})
-      this.task = ""
-
-    }
   },
   mounted() {
     this.getCalendarDate()
