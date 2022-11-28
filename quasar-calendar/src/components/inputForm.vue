@@ -12,7 +12,7 @@
       <input type="text" v-model="password" required><br>
       <span v-if="msg.password">{{msg.password}}</span>
       <br>
-       <input type="submit" :disabled="!disabled.every(i => i === false)" />
+       <input type="submit" :disabled="this.email && this.password.length<=8"" />
     </form>
 </div>
 </template>
@@ -48,7 +48,6 @@ export default {
     this.msg['email'] = '';
   } else{
     this.msg['email'] = 'Invalid Email Address';
-    this.disabled = [true, this.disabled[1]]
   } 
     },
     validatePassword(value){
@@ -58,7 +57,6 @@ export default {
       }
       else{
         this.msg['password']=''
-        this.disabled = [this.disabled[1], false]
       }
     },
     handleSubmission(){
