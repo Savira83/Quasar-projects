@@ -1,5 +1,5 @@
 <template>
-    <form   @submit.prevent="handleSubmit">
+    <form   @submit.prevent="registration">
         <h3>Sign up</h3>
         <div clas="form-group">
             <label>First Name</label>
@@ -35,22 +35,19 @@ export default {
     methods: {
         ...mapActions([ 'register' ]),
 
-        handleSubmit() {
-            let user = {
+
+        registration () {
+            let data = {
                 first_name: this.first_name,
                 last_name: this.last_name,
                 email: this.email,
                 password: this.password,
             }
-            this.register(user)
-            this.first_name = ''
-            this.last_name = ''
-            this.email = ''
-            this.password = ''
-            this.$router.push("/HomePage")
-           
-        }
+        this.register(data)
 
+       .then(() => this.$router.push('/'))
+       .catch(err => console.log(err))
+      }
     }
    } 
 </script>

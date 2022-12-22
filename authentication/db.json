@@ -1,40 +1,11 @@
 {
   "users": [
     {
-      "email": "pekaryuk.ira@gmail.com",
-      "password": "$2a$10$EtQOOYDFcdjxexa7K6kQ0uHVayEw7TxNmVLae85yukA/pvfNFe5x6",
+      "email": "iryna@gmai.com",
+      "password": "$2a$10$ZAgZ9RbEjRwjRsDuM82MR.zl3sfnJYRu8eNypiQR3pHBvD7kB/TCS",
       "first_name": "Iryna",
       "last_name": "Savchenko",
-      "password_confirmd": "111111",
       "id": 1
-    },
-    {
-      "email": "dsfase@grg.ggrg",
-      "password": "$2a$10$S.QBZkHix9rE/BpcSwMJeOg/gVeT0DISqd0i2867GyjYXSuWnR2Fy",
-      "first_name": "888",
-      "last_name": "efaw",
-      "id": 2
-    },
-    {
-      "email": "rrtaewktu@drert.gh",
-      "password": "$2a$10$pq5gBSXwr/QKUpMKm7kh8ufnC6hJzqqsT9.UW8NpRfogJNte5xLtS",
-      "first_name": "11111",
-      "last_name": "11111",
-      "id": 3
-    },
-    {
-      "email": "fshd@eg.ghtf",
-      "password": "$2a$10$YvAHD5lhGaXwUasXGOdNheyQ74cQBbQBypPRjn0zOfpdxuwBmbGY6",
-      "first_name": "111",
-      "last_name": "1111",
-      "id": 4
-    },
-    {
-      "email": "rkgrh@grg.th",
-      "password": "$2a$10$JV145QeiLbsSY1HpWG8TmOhWNqw/AtoHrizqCl0Aea3bEHmbxW0Wy",
-      "first_name": "mrgk",
-      "last_name": "gre5t",
-      "id": 5
     }
   ]
 }
