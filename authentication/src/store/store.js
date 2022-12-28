@@ -24,38 +24,33 @@ const store = createStore({
             //     localStorage.removeItem('token')
 
             // })
-
         },
         login({ commit }, data) {
-            axios
-                .post('http://localhost:3000/login', data)
-                .then(resp => {
-                    // if (data.accessToken)
-                    const token = resp.data.accessToken
-                    const user = resp.data.user
-                    localStorage.setItem('token', token)
-
-                    commit('auth_success', token, user)
-                    console.log(resp)
-
-                })
-                .catch(err => {
-                    // debugger
-                    commit('auth_error', err)
-                    localStorage.removeItem('accessToken')
-
-                })
-
+            return new Promise((resolve, reject) => {
+                axios
+                    .post('http://localhost:3000/login', data)
+                    .then(resp => {
+                        // if (data.accessToken)
+                        const token = resp.data.accessToken
+                        const user = resp.data.user
+                        localStorage.setItem('token', token)
+                        commit('auth_success', token, user)
+                        resolve(resp)
+                        // console.log(resp)
+                    })
+                    .catch(err => {
+                        commit('auth_error', err)
+                        localStorage.removeItem('accessToken')
+                        reject(err)
+                        // console.log(err)
+                    })
+            })
         },
         logout({ commit }) {
-
             commit('logout')
             localStorage.removeItem('accessToken')
             delete axios.defaults.headers.common['Authorization']
-
         }
-
-
     },
     mutations: {
 
@@ -66,10 +61,10 @@ const store = createStore({
             // console.log(state)
         },
         auth_error(state, err) {
-            console.log(err)
+            // console.log(err)
             state.status = 'error'
             state.login_error = err.response.data
-            console.log(state.login_error)
+            // console.log(state.login_error)
         },
         logout(state) {
             state.status = ''
