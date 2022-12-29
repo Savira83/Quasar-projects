@@ -1,9 +1,7 @@
 <template>
     
-    <router-link to="/NewRegistration">Sign Up</router-link>
-    <br />
-    <router-link to="/LogIn">Login</router-link>
-  
+    <router-link to="/"></router-link>
+ 
     <router-view></router-view>
 </template>
 <script>
@@ -13,3 +11,6 @@ export default {
     
   }
 </script>
+
+<style>
+</style>

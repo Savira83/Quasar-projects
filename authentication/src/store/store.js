@@ -5,7 +5,7 @@ import axios from 'axios'
 const store = createStore({
     state: {
         login_error: '',
-        token: localStorage.getItem('accessToken'),
+        token: localStorage.getItem('token'),
         user: {},
         status: ''
 
@@ -34,27 +34,27 @@ const store = createStore({
                         const token = resp.data.accessToken
                         const user = resp.data.user
                         localStorage.setItem('token', token)
-                        commit('auth_success', token, user)
+                        commit('auth_success', {token, user})
                         resolve(resp)
                         // console.log(resp)
                     })
                     .catch(err => {
                         commit('auth_error', err)
-                        localStorage.removeItem('accessToken')
+                        localStorage.removeItem('token')
                         reject(err)
                         // console.log(err)
                     })
             })
         },
         logout({ commit }) {
-            commit('logout')
-            localStorage.removeItem('accessToken')
+            commit('log_out')
+            localStorage.removeItem('token')
             delete axios.defaults.headers.common['Authorization']
         }
     },
     mutations: {
 
-        auth_success(state, token, user) {
+        auth_success(state, {token, user}) {
             state.status = 'success'
             state.token = token
             state.user = user
@@ -66,7 +66,7 @@ const store = createStore({
             state.login_error = err.response.data
             // console.log(state.login_error)
         },
-        logout(state) {
+        log_out(state) {
             state.status = ''
             state.token = ''
         },
