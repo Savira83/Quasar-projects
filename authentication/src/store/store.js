@@ -4,8 +4,10 @@ import axios from 'axios'
 
 const store = createStore({
     state: {
+        users:[],
         login_error: '',
         token: localStorage.getItem('token'),
+        id: localStorage.getItem('id') || '',
         user: {},
         status: ''
 
@@ -25,16 +27,21 @@ const store = createStore({
 
             // })
         },
-        login({ commit }, data) {
+        login({ commit, dispatch}, data) {
+            dispatch('getUser')
             return new Promise((resolve, reject) => {
+            
+
                 axios
                     .post('http://localhost:3000/login', data)
                     .then(resp => {
                         // if (data.accessToken)
                         const token = resp.data.accessToken
+                        const id = resp.data.user.id
                         const user = resp.data.user
                         localStorage.setItem('token', token)
-                        commit('auth_success', {token, user})
+                        localStorage.setItem('id', id)
+                        commit('auth_success', {token, user, id})
                         resolve(resp)
                         // console.log(resp)
                     })
@@ -46,17 +53,31 @@ const store = createStore({
                     })
             })
         },
-        logout({ commit }) {
+        logout({ commit}) {
             commit('log_out')
             localStorage.removeItem('token')
+            localStorage.removeItem('id')
+
             delete axios.defaults.headers.common['Authorization']
+        },
+        getUser({commit, getters}){
+            let id = getters.isLoggedIn
+            axios
+            .get(`http://localhost:3000/users/${id}`)
+            .then(resp=>{
+                commit('set_user', resp.data)
+              console.log(resp.data)
+            })
+
         }
     },
     mutations: {
 
-        auth_success(state, {token, user}) {
+        auth_success(state, {token, user, id}) {
             state.status = 'success'
             state.token = token
+            state.id = id
+
             state.user = user
             // console.log(state)
         },
@@ -69,11 +90,30 @@ const store = createStore({
         log_out(state) {
             state.status = ''
             state.token = ''
+            state.id = ''
+
+        },
+         set_user(state, user) {
+           
+            state.users = user;
         },
 
-
-
     },
+     getters:{
+ 
+        isLoggedIn(state){
+             
+            return  state.id
+         // console.log(state.id)
+
+        },
+        logIn(state){
+            return state.id !==null
+        },
+        getUser(state){
+            return  state.user
+    }
+}
 
 })
 

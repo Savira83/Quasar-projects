@@ -1,4 +1,5 @@
 <template>
+	
 	<h3>{{login_error}}</h3>
 	<button @click = "goHome">Home</button>
 </template>
