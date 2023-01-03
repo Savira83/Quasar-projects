@@ -8,17 +8,14 @@
 <script>
 import {mapState} from 'vuex'
 import {mapActions} from 'vuex'
-
 export default{
 	name:'MyPage',
 	computed:{
 		...mapState(['user'])
-
 	},
 	methods:{
 		...mapActions(['logout']),
 		LogOut(){
-			
 			this.logout()
 			this.$router.push('/')
 		}
@@ -29,7 +26,6 @@ export default{
 <style>
 h3 {
 	text-align: center;
-
 }
 .name{
 	display: inline-block;
@@ -37,5 +33,6 @@ h3 {
     margin: 2px;
     float: right;
 }
-
 </style>
+
+	

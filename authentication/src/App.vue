@@ -1,32 +1,26 @@
 <template>
-    <div v-if="logIn" >
-    <router-link to="/MyPage"></router-link>
-    </div>
-    <!-- <button @click='isLogged'></button> -->
+    <router-link to="/MyPage"> </router-link>
     <router-link to="/"></router-link>
- 
     <router-view></router-view>
 </template>
 <script>
-import {mapGetters, mapActions} from 'vuex'
-
+import { mapGetters, mapActions } from 'vuex'
 export default {
     name: 'App',
-    computed:{
-        ...mapGetters(['logIn'])
-    }, 
-    methods:{
+    computed: {
+        ...mapGetters(['isId'])
+    },
+    methods: {
         ...mapActions(['getUser']),
-        // isLogged(){
-        //      let id = this.logIn()
-        //     console.log(id)
-        // }
-    }, 
+    },
     mounted() {
         this.getUser()
+        console.log(this.isId)
+        if (this.isId) {
+            this.$router.push("/MyPage")
+        }
     },
-  }
+}
 </script>
-
 <style>
 </style>

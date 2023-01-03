@@ -7,7 +7,6 @@ import ErrorPage from './components/ErrorPage.vue'
 
 
 
-
 const router =createRouter({
 	history: createWebHistory(),
 	routes:[
@@ -15,11 +14,7 @@ const router =createRouter({
 		{path: '/NewRegistration', name:'registration', component: NewRegistration},
 		{path: '/LogIn', name:'login', component: LogIn},
 		{path: '/MyPage', name:'myPage', component: MyPage},
-		{path: '/Error', name:'error', component: ErrorPage},
-
-
-		
-
+		{path: '/ErrorPage', name:'ErrorPage', component: ErrorPage}
 	
 		]
 	

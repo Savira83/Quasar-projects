@@ -13,6 +13,13 @@
       "first_name": "Igor",
       "last_name": "Mar",
       "id": 2
+    },
+    {
+      "email": "fdv@fbd.yj",
+      "password": "$2a$10$Kq3SvuLrkmemglaWAwkEOOhPZLaTmuXLicdTpS0AVkiQYipgVqoWy",
+      "first_name": "dfdb",
+      "last_name": "bfg",
+      "id": 3
     }
   ]
 }

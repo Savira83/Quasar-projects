@@ -9,7 +9,6 @@
             <label>Password</label>
             <input type="password" v-model="password" placeholder="Password">
         </div>
-        <h3>{{status}}</h3>
         <div v-if="status ==='error'"> {{login_error}} </div>
         <button> Sign in</button>
     </form>
@@ -42,11 +41,12 @@ export default {
                         this.$router.push('/MyPage')
                     }
                 })
-                .catch(err => {
-                    // console.log(err)
-                    if (err) {
-                        this.$router.push('/Error')
-                    }
+                 .catch(err => {
+                    console.log(err)
+                  if (err) {
+
+                     this.$router.push('/ErrorPage')
+                 }
                 })
         }
     }

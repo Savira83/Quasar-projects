@@ -7,7 +7,7 @@
             <router-link to="/LogIn">Login</router-link>
         </div>
     </nav>
-    <button @click="isLogged(id)"> ++</button>
+    
     <router-view></router-view>
     <h3>This Is Home Page</h3>
 </template>
@@ -15,27 +15,20 @@
 import { mapGetters, mapActions, mapState } from 'vuex'
 export default {
     name: 'HomePage',
-    props: ['id'],
+    
     computed: {
-        ...mapGetters(['isLoggedIn']),
-        ...mapState(['users'])
+        ...mapGetters(['userId']),
+        ...mapState(['user'])
     },
     methods: {
         ...mapActions(['getUser']),
-      
-        isLogged(){
-             let id = this.isLoggedIn()
-            console.log(id)
-        }
     }
 }
 </script>
 <style>
 h3 {
     text-align: center;
-
 }
-
 .nav {
     display: inline-block;
     vertical-align: baseline;
