@@ -4,13 +4,16 @@
     <q-header class="bg-primary text-white">
       <q-toolbar>
         <q-toolbar-title>
-          <q-item class="q-mr-sm float-right">
-          <router-link to="/LogIn">LogIn</router-link>
-        </q-item>
-        <q-item class="q-mr-sm float-right">
-          <router-link to="/SignUp">Sign Up</router-link>
-        </q-item>
+          My form
         </q-toolbar-title>
+        <q-list class="row ">
+        <q-item class="q-mr-sm" to="/LogIn" exact>
+          LogIn
+        </q-item>
+        <q-item class="q-mr-sm" to="/SignUp" exact>
+          Sign Up
+        </q-item>
+        </q-list>
       </q-toolbar>
       
     </q-header>
