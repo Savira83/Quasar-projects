@@ -1,19 +1,11 @@
 {
   "users": [
     {
-      "email": "iryna@gmai.com",
-      "password": "$2a$10$ZAgZ9RbEjRwjRsDuM82MR.zl3sfnJYRu8eNypiQR3pHBvD7kB/TCS",
+      "email": "iryna@sav.com",
+      "password": "$2a$10$qBUFGBKDAmjrXjVqT59Eh.sh8OcrT9sCxiAXqOzyIwggetDT1KeF6",
       "first_name": "Iryna",
-      "last_name": "Savchenko",
+      "last_name": "Sav",
       "id": 1
-    },
-    {
-      "email": "igor@mar.com",
-      "password": "$2a$10$j1govSFDWVAKSJpkdnbG.uXNt6PDhoou1JNO6KzQ1sAEhh.AF/wlW",
-      "first_name": "Igor",
-      "last_name": "Mar",
-      "id": 2
-    },
-
+    }
   ]
 }

@@ -1,46 +1,34 @@
 <template>
-   
-    <div class="bg-success p-1" style="bs-bg-opacity: .5;">
-    <q-img src="images/pink.jpg"/>
-    </div>
+  <div class="fix">
+    <q-img class="absolute-full" src="images/flower.webp" />
+    <q-card class="q-pa-none fixed-center bg-grey-1 rounded" style="max-width: 400px; height: 420px; width: 280px">
       
-      <div  class="q-pa-none fixed-center bg-grey-1 rounded" style="max-width: 400px; height: 400px; width: 230px">
-        <div style="border-radius: 30px">
+      <q-form
+         @submit="logIn" @reset="onReset" 
+          class="qolumn q-pa-md shadow-2 auth-form row item-center justify-center">
 
-    <q-form
-      @submit="logIn"
-      @reset="onReset"
-      class="q-gutter-md rounded filled"
-      
-    >
-    <div class="text-center text-h5 bg-blue-grey-2 q-pa-md " style="height:60px; max-width: 400px">Sign in</div>
-      <q-input
-        filled
-        v-model="email"
-        label="e-mail"
-        hint="Your e-mail and password"
-        lazy-rules
-        :rules="[ val => val && val.length > 0 || 'Please type e-mail']"
-      />
+        <div class="text-center text-h5 bg-secondary q-pa-md " style="height:60px; width: 416px">Sign in</div>
 
-      <q-input
-        filled
-        type="password"
-        v-model="password"
-        label="password"
-        lazy-rules
-        :rules="[
-          val => val !== null && val !== '' || 'Please type your password',
-          val => val > 0 && val < 100 || 'Please typ'
-        ]"
-        class="q-mb-lg"
-      />
+        <q-input filled 
+          v-model="email" label="e-mail" 
+          class=" q-mt-lg q-mb-md bg-accent" 
+          style="height:60px; width: 416px"/>
 
-      <div class="q-pa-xl justify-center">
-        <q-btn label="Sign in" type="submit" color="primary"/>
-      </div>
-    </q-form>
-    </div>
+        <q-input filled 
+         type="password" 
+         v-model="password" label="password" 
+          class="q-mb-lg q-mt-md" 
+         style="height:60px; width: 416px" />
+
+        <div class="q-pa-xl justify-center">
+          <q-btn 
+          label="Sign in" 
+          type="submit" 
+          color="primary" 
+          style="width: 150px" />
+        </div>
+      </q-form>
+    </q-card>
   </div>
 </template>
 <script>
