@@ -1,1 +1,37 @@
 // app global css in SCSS form
+.blog {
+  padding: 30px;
+  font-size: 50px;
+  line-height: 60px;
+
+  span {
+    color: purple;
+  }
+
+  .blog_text {
+    font-size: 80px;
+  }
+}
+.link {
+	color: blueviolet;
+	text-decoration: underline;
+	&:hover{
+		color:green;
+	}
+	& :before{
+		content: "#";
+		color:red;
+
+	}
+	&:after{
+		content: "#";
+		color: blue;
+
+	}
+	& :active{
+
+	}
+	& :after{
+
+	}
+}

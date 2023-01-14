@@ -1,9 +1,16 @@
 <template>
 	<button  @click="LogOut" class="nav">Log Out</button>
+	
 	<div class="nav"><h5>{{user.first_name}}</h5></div>
 	<div class="nav"><h5>{{user.last_name}}</h5></div>
 	
-	<div >This  Is My Page</div>
+	
+	<div class="blog">
+		<a href="" class="link">Google</a>
+		<div class="blog_text"> 
+			
+			<span>This  Is My Page </span> </div>
+</div>
 </template>
 <script>
 import {mapState} from 'vuex'
