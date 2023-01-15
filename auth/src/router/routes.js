@@ -12,6 +12,10 @@ const routes = [{
         component: () => import('pages/SignUp.vue')
       },
       {
+        path: '/NewFile',
+        component: () => import('pages/NewFile.vue')
+      },
+      {
         path: '/MyPage',
         component: () => import('pages/MyPage.vue')
       },

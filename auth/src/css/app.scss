@@ -1,37 +1,47 @@
 // app global css in SCSS form
-.blog {
-  padding: 30px;
-  font-size: 50px;
-  line-height: 60px;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 
-  span {
-    color: purple;
-  }
-
-  .blog_text {
-    font-size: 80px;
-  }
+body {
+	background-color: #f1f1f1;
+	color: #0f141e;
+ font: normal 16px 'Roboto Condensed', sans-serif;
 }
-.link {
-	color: blueviolet;
-	text-decoration: underline;
-	&:hover{
-		color:green;
-	}
-	& :before{
-		content: "#";
-		color:red;
+.picture_tree {
+	width: 300px;
+	border-radius: 28px;
+	box-shadow: 4px 4px 14px rgba(0,0,0,025);
+}
 
+// box-model
+	.social{
+		background: lightblue;
 	}
-	&:after{
-		content: "#";
-		color: blue;
-
+	.container {
+		max-width: 750%;
+		margin: auto;
+		padding-top: 20px;
+		background: lavender;
 	}
-	& :active{
 
-	}
-	& :after{
+.info{
+	p {
 
+		color: #868986;
+		margin: 0;
+		font-style: italic;
+		text-decoration: none;
 	}
 }
+.sign-form{
+	box-shadow: 4px 4px 14px rgba(0,0,0,025);
+	border-radius: 25px;
+	 form {
+		border-radius: 25px;
+	}
+}
+.sign-btn {
+	border-radius: 10px;
+	width: 150px;
+	height: 40px;
+}
+

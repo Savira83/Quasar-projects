@@ -1,39 +1,39 @@
 <template>
-    <div class="fix">
-    <q-img class="absolute-full" src="images/flower.webp" />
     
+    <q-img class="absolute-full" src="images/flower.webp" style="tabindex:-1" />
+    <div class="">
     <q-card
-         flat bordered class ="my-card q-pa-none fixed-center bg-grey-1 rounded" 
-         style="max-width: 400px; height: 420px; width: 280px">
+         flat bordered class ="sign-form q-pa-none fixed-center bg-grey-1 rounded" 
+         style=" box-sizing: border-box max-width: 400px; width: 280px; height:75%;">
 	  <q-form
       @submit="registration"
-       class="  qolumn q-pa-md shadow-2 auth-form row item-center justify-center"
+       class="q-pa-md shadow-2 auth-form row item-center justify-center" style="height:100%"
     >
-    <div class="text-center text-h5 bg-secondary q-pa-md " style="height:60px; width: 416px">Sign up</div>
+   
+    <div class="text-center text-h5 bg-secondary q-pa-md " style="height:13%; width: 100%">Sign up</div>
      <q-input
         filled
         type="text"
         v-model="first_name"
         label="First Name"
-        class=" q-mt-lg q-mb-md bg-accent" 
-        style="height:60px; width: 416px"
+        class=" q-mt-sm  bg-accent" 
+        style="height:10%; width: 100%"
       />
        <q-input
         filled
         type="text"
         v-model="last_name"
-
         label="Last Name"
-         class=" q-mt-lg q-mb-md bg-accent" 
-        style="height:60px; width: 416px"
+         class=" q-mt-sm  bg-accent" 
+        style="height:10%; width: 100%"
       />
       <q-input
         filled
         type="text"
         v-model="user_name"
         label="UserName"
-         class=" q-mt-lg q-mb-md bg-accent" 
-        style="height:60px; width: 416px"
+         class=" q-mt-sm  bg-accent" 
+        style="height:10%; width: 100%"
       />
       <q-input
         filled
@@ -41,8 +41,8 @@
         v-model="email"
         label="e-mail"
         lazy-rules :rules="[ val => val && val.length > 0 || 'Please type e-mail']" 
-         class=" q-mt-lg q-mb-md bg-accent" 
-        style="height:60px; width: 416px"
+         class=" q-mt-sm bg-accent" 
+        style="height:60px; width: 100%"
       />
 
       <q-input
@@ -50,15 +50,16 @@
         type="password"
         v-model="password"
         label="password" 
-         class=" q-mt-lg q-mb-md bg-accent" 
-        style="height:60px; width: 416px" 
+         class=" q-mt-sm  bg-accent" 
+        style="height:60px; width: 100%" 
       />
       <div>
         <q-btn label="Sign Up" 
         type="login"
          color="primary"
-         style="width: 150px"/>
+         class="sign-btn"/>
       </div>
+      
    </q-form>
     </q-card>
 

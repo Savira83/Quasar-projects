@@ -6,7 +6,22 @@
         <q-toolbar-title>
           My form
         </q-toolbar-title>
+
+        <q-list v-if="user" class="row ">
+          <q-item class="q-mr-md">
+          {{user.first_name}}
+        </q-item>
+        <q-item class="q-mr-sm">
+         {{user.last_name}}
+        </q-item>
+        <q-item class="q-mr-sm" to="/SignUp" exact>
+          Logout
+        </q-item>
+        </q-list>
         <q-list class="row ">
+          <q-item class="q-mr-md" to="/NewFile" exact>
+          New File
+        </q-item>
         <q-item class="q-mr-sm" to="/LogIn" exact>
           LogIn
         </q-item>
@@ -17,9 +32,9 @@
       </q-toolbar>
     </q-header>
 
-    <q-page-container>
+    <q-page-container class="q-pt-none q-ma-auto">
 
-   
+    <router-view />
       
     </q-page-container>
 
@@ -30,7 +45,7 @@
         </q-toolbar-title>
       </q-toolbar>
     </q-footer>
-    <router-view />
+   
 
   </q-layout>
 </template>
