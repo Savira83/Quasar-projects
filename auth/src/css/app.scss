@@ -6,9 +6,15 @@ body {
 	color: #0f141e;
  font: normal 16px 'Roboto Condensed', sans-serif;
 }
-.picture_tree {
-	width: 300px;
-	border-radius: 28px;
+.icon-picture {
+	width: 35px;
+	height: 35px;
+	border-radius: 50px;
+	// box-shadow: 4px 4px 14px rgba(0,0,0,025);
+}
+.portret-picture {
+	width: 150px;
+	border-radius: 50px;
 	box-shadow: 4px 4px 14px rgba(0,0,0,025);
 }
 
@@ -44,4 +50,3 @@ body {
 	width: 150px;
 	height: 40px;
 }
-

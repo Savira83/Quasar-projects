@@ -1,5 +1,5 @@
 <template>
-  <div class="fix">
+  <div class="fix bg-purple-3-blue-grey-4" >
     <q-img class="absolute-full" src="images/flower.webp" />
     <q-card class=" sign-form q-pa-none fixed-center bg-grey-1" style="max-width: 400px; height: 420px; width: 280px">
       <q-form @submit.prevent="logIn"  class="qolumn q-pa-md shadow-2 auth-form row item-center justify-center">
@@ -18,8 +18,6 @@
 import { useQuasar } from 'quasar'
 import { ref } from 'vue'
 import { mapActions, mapState } from 'vuex'
-
-
 export default {
   name: 'LogIn',
   data() {
@@ -53,7 +51,5 @@ export default {
         })
     }
   }
-
 }
-
 </script>

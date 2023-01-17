@@ -10,9 +10,10 @@ class AuthService {
     login(user) {
         return axios
             .post( API_URL +'/login', {
-                // first_name: first_nap,
+                first_name: user.first_name,
+                last_name: user.last_name,
+                user_name: user.user_name,
                 email: user.email,
-                username: user.username,
                 password: user.password
             })
 
@@ -26,7 +27,7 @@ class AuthService {
                     localStorage.setItem('user', JSON.stringify(user));
                     localStorage.setItem('token', token)
                     localStorage.setItem('id', id);
-                    console.log(resp.data)
+                    console.log(token)
                 }
                 return resp
             })
@@ -41,10 +42,11 @@ class AuthService {
             .post(API_URL + '/register', {
                 first_name: user.first_name,
                 last_name: user.last_name,
-                // username: user.username,
+                user_name: user.user_name,
                 email: user.email,
                 password: user.password
-            });
+            }
+            );
     }
 }
 export default new AuthService();

@@ -17,21 +17,26 @@ export default store(function (/* { ssrContext } */) {
     },
     actions: {
         register({ commit }, resp) {
+            return new Promise((resolve, reject) => {
             AuthService.register(resp)
             .then(resp=>{
                 commit('auth_success', resp.data)
+                resolve(resp)
             })
              .catch(err => {
                 commit('auth_error', err)
                 localStorage.removeItem('token')
+                reject(err)
             })
+            }) 
         },
-        login({commit}, resp) {
+        login({commit, dispatch}, resp) {
              return new Promise((resolve, reject) => {
               AuthService.login(resp)
               // console.log(resp)
-                .then( resp=>{
+                .then( resp=>{ 
                    commit('auth_success', resp.data)
+                   console.log(resp.data)
                    resolve(resp)})
                    .catch( err=>{
                         commit('auth_error', err);
@@ -39,6 +44,8 @@ export default store(function (/* { ssrContext } */) {
                          reject(err)
                     })
                  })
+             dispatch('getUser')
+
         },
         logout({ commit}) {
             AuthService.logout()
@@ -59,12 +66,12 @@ export default store(function (/* { ssrContext } */) {
     },
     mutations: {
 
-        auth_success(state, {token, user, id}) {
+        auth_success(state, {user, accessToken}) {
             state.status = 'success'
-            state.token = token
-            state.id = id
+            state.token = accessToken
+            state.id = user.id
             state.user = user
-            // console.log(state)
+             // console.log(token)
         },
         auth_error(state, err) {
             console.log(err)
@@ -81,6 +88,7 @@ export default store(function (/* { ssrContext } */) {
         },
          set_user(state, user) {
             state.user = user;
+        
         },
 
     },

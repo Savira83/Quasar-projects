@@ -6,6 +6,14 @@
       "first_name": "Iryna",
       "last_name": "Sav",
       "id": 1
+    },
+    {
+      "email": "ira@sav.com",
+      "password": "$2a$10$zHy9H9pdRLRddPZktt7iHew8j0evNsLihGejbe0qqtWSL8Njswx/m",
+      "first_name": "Iryna",
+      "last_name": "Sav",
+      "user_name": "Savira",
+      "id": 2
     }
   ]
 }
